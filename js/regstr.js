@@ -32,8 +32,7 @@ submit.addEventListener("click", function(event) {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
-      alert("Qeydiyyat uğurla tamamlandı");
-      
+      alert("Hesap başarıyla oluşturuldu.");
     })
     .catch((error) => {
       const errorCode = error.code;

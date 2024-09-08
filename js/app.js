@@ -1,9 +1,36 @@
-const panelbar=document.getElementById('panelbar')
-function menubar() {
-    const panelbar = document.getElementById('panelbar');  
-    if (panelbar.style.display === "none" || panelbar.style.display === "") {
-        panelbar.style.display = "block";  
-    } else {
-        panelbar.style.display = "none";   
-    }
+const main1 = document.getElementById("main1");
+const main2 = document.getElementById("main2");
+window.onload = function() {
+  const displayStatus = localStorage.getItem("displayStatus");
+  
+  if (displayStatus === "main1") {
+    main1.style.display = "block";
+    main2.style.display = "none";
+  } else {
+    main1.style.display = "none";
+    main2.style.display = "block";
+  }
+}
+
+function elavego() {
+  if (main1.style.display === "none" || main1.style.display === "") {
+    main1.style.display = "block";
+    main2.style.display = "none";
+
+    localStorage.setItem("displayStatus", "main1");
+  } else {
+    main1.style.display = "none";
+    main2.style.display = "block";
+    
+    localStorage.setItem("displayStatus", "main2");
+  }
+}
+
+function gerigo() {
+  if (main1.style.display === "none" || main1.style.display === "") {
+    main1.style.display = "block";
+    main2.style.display = "none";
+
+    localStorage.setItem("displayStatus", "main1");
+  } 
 }
