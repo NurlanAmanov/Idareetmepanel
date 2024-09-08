@@ -23,7 +23,9 @@ const auth = getAuth(app);
 
 // DOM tamamen yüklendiğinde çalışması için:
 document.addEventListener("DOMContentLoaded", function() {
-  const button2 = document.getElementById('button2'); // submit2 yerine button2 kullanıyoruz
+  const button2 = document.getElementById('button2');
+  const notification = document.getElementById('notification'); // Bildiriş konteyneri
+  
   button2.addEventListener("click", function(event) {
     event.preventDefault();
 
@@ -32,14 +34,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     signInWithEmailAndPassword(auth, mail, pass)
       .then((userCredential) => {
-        // Signed up 
+       
         const user = userCredential.user;
-        alert("Giriş uğurla yerinə yetirildi");
-        window.location.href = "panel.htm";
+
+ 
+        notification.innerHTML = `
+          <div class="alert alert-success text-xl" role="alert">
+            Giriş uğurlu oldu! Yönləndirilir...
+          </div>
+        `;
+
+  
+        setTimeout(() => {
+          window.location.href = "panel.htm";
+        }, 2000);
       })
       .catch((error) => {
         const errorMessage = error.message;
-        alert(errorMessage);
+
+        // Xəta bildirişi göstər
+        notification.innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            Xəta: ${errorMessage}
+          </div>
+        `;
       });
   });
 });

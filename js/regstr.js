@@ -32,11 +32,26 @@ submit.addEventListener("click", function(event) {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
-      alert("Hesap başarıyla oluşturuldu.");
+      const notification = document.getElementById('notification');
+      notification.innerHTML = `
+        <div class="alert alert-success" role="alert">
+          Qeydiyyat uğurlu oldu! Yönləndirilir...
+        </div>
+      `;
+      
+
+      setTimeout(() => {
+        window.location.href = '../panel.htm';
+      }, 2000); 
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert(errorMessage);
+      const notification = document.getElementById('notification');
+      notification.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+          ${errorMessage}
+        </div>
+      `;
     });
 });
